@@ -117,7 +117,7 @@ _*Нефункциональные требования*_
 - *P04.* Система должна предоставлять возможность обновления данных с датчиков температуры в реальном времени.
 
 *Design Constraints (ограничения разработки)*
-- *D01.* Для разработки бэкенда использовать Java 24, Spring Web MVC, Spring Data JPA, Spring Security, Spring Session, Spring Boot, Lombok, Spring Boot Actuator.
+- *D01.* Для разработки бэкенда использовать Java 24, Spring Web MVC, Spring Data JPA, Spring Security, Spring Session, Spring Boot, Lombok, Spring Boot Actuator, систему сборки Gradle.
 - *D02.* В качестве СУБД использовать PostgreSQL.
 - *D03.* Для разработки фронтенда использовать TypeScript, библиотеку React, Tailwind CSS.
 - *D04.* Для связи бэкенда и фронтенда использовать протокол HTTPS, RESTful API.
