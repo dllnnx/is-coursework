@@ -119,7 +119,7 @@ _*Нефункциональные требования*_
 
 *Design Constraints (ограничения разработки)*
 - *D01.* Для разработки бэкенда использовать Java 24, Spring Web MVC, Spring Data JPA, Spring Security, Spring Session, Spring Boot, Lombok, Spring Boot Actuator, систему сборки Gradle.
-- *D02.* В качестве СУБД использовать PostgreSQL.
+- *D02.* В качестве СУБД использовать PostgreSQL. Для миграций баз данных использовать библиотеку Liquibase.
 - *D03.* Для разработки фронтенда использовать TypeScript, библиотеку React, Tailwind CSS.
 - *D04.* Для связи бэкенда и фронтенда использовать протокол HTTPS, RESTful API.
 - *D05.* Для сбора метрик использовать систему Prometheus, Grafana для их визуализации.
