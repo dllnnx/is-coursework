@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS "user" (
     id SERIAL PRIMARY KEY,
     yandex_id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -87,3 +87,9 @@ CREATE TABLE IF NOT EXISTS ac_group_membership (
     FOREIGN KEY (air_conditioner_id) REFERENCES air_conditioner(id),
     FOREIGN KEY (group_id) REFERENCES ac_group(id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_user_yandex_id ON "user" (yandex_id);
+CREATE INDEX IF NOT EXISTS idx_room_building_id ON room (building_id);
+CREATE INDEX IF NOT EXISTS idx_air_conditioner_status ON air_conditioner (status);
+CREATE INDEX IF NOT EXISTS idx_schedule_air_conditioner_id ON schedule (air_conditioner_id);
+CREATE INDEX IF NOT EXISTS idx_schedule_day_active ON schedule (day_of_week, is_active);
