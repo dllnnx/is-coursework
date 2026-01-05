@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS ac_group_membership;
+DROP TABLE IF EXISTS user_role;
+
+DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS temperature_sensor;
+DROP TABLE IF EXISTS air_conditioner;
+DROP TABLE IF EXISTS room;
+
+DROP TABLE IF EXISTS registration_request;
+DROP TABLE IF EXISTS ac_group;
+DROP TABLE IF EXISTS building;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS user;
