@@ -1,0 +1,90 @@
+erDiagram
+    USER {
+        int id PK
+        string yandex_id
+        string name
+        string email
+    }
+    
+    ROLE {
+        int id PK
+        string name
+    }
+    
+    BUILDING {
+        int id PK
+        string name
+        string address
+    }
+    
+    ROOM {
+        int id PK
+        int building_id FK
+        string name
+    }
+    
+    AIR_CONDITIONER {
+        int id PK
+        int room_id FK
+        string name
+        string model
+        string status
+        string mode
+        float target_temperature
+    }
+    
+    TEMPERATURE_SENSOR {
+        int id PK
+        int room_id FK
+        string name
+        string model
+        float current_temperature
+    }
+    
+    SCHEDULE {
+        int id PK
+        int air_conditioner_id FK
+        string name
+        string day_of_week
+        date specific_date
+        time start_time
+        time end_time
+        string mode
+        float target_temperature
+        string periodicity
+        boolean is_active
+    }
+    
+    AC_GROUP {
+        int id PK
+        string name
+    }
+    
+    REGISTRATION_REQUEST {
+        int id PK
+        int user_id FK
+        string status
+    }
+    
+    
+    USER_ROLE {
+        int user_id FK
+        int role_id FK
+        int building_id FK
+    }
+    
+    AC_GROUP_MEMBERSHIP {
+        int air_conditioner_id FK
+        int group_id FK
+    }
+    
+    USER ||--o{ USER_ROLE : has
+    ROLE ||--o{ USER_ROLE : includes
+    USER ||--o{ REGISTRATION_REQUEST : requests
+    BUILDING ||--o{ ROOM : contains
+    BUILDING ||--o{ USER_ROLE : assigns
+    ROOM ||--o{ AIR_CONDITIONER : contains
+    ROOM ||--o{ TEMPERATURE_SENSOR : contains
+    AIR_CONDITIONER ||--o{ SCHEDULE : has
+    AC_GROUP_MEMBERSHIP }o--|| AIR_CONDITIONER : includes
+    AC_GROUP_MEMBERSHIP }o--|| AC_GROUP : includes
