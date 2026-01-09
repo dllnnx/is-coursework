@@ -1,90 +1,89 @@
-erDiagram
-    USER {
-        int id PK
-        string yandex_id
-        string name
-        string email
+classDiagram
+    class USER {
+        id
+        yandex_id
+        name
+        email
     }
     
-    ROLE {
-        int id PK
-        string name
+    class ROLE {
+        id
+        name
     }
     
-    BUILDING {
-        int id PK
-        string name
-        string address
+    class BUILDING {
+        id
+        name
+        address
     }
     
-    ROOM {
-        int id PK
-        int building_id FK
-        string name
+    class ROOM {
+        id
+        building_id
+        name
     }
     
-    AIR_CONDITIONER {
-        int id PK
-        int room_id FK
-        string name
-        string model
-        string status
-        string mode
-        float target_temperature
+    class AIR_CONDITIONER {
+        id
+        room_id
+        name
+        model
+        status
+        mode
+        target_temperature
     }
     
-    TEMPERATURE_SENSOR {
-        int id PK
-        int room_id FK
-        string name
-        string model
-        float current_temperature
+    class TEMPERATURE_SENSOR {
+        id
+        room_id
+        name
+        model
+        current_temperature
     }
     
-    SCHEDULE {
-        int id PK
-        int air_conditioner_id FK
-        string name
-        string day_of_week
-        date specific_date
-        time start_time
-        time end_time
-        string mode
-        float target_temperature
-        string periodicity
-        boolean is_active
+    class SCHEDULE {
+        id
+        air_conditioner_id
+        name
+        day_of_week
+        specific_date
+        start_time
+        end_time
+        mode
+        target_temperature
+        periodicity
+        is_active
     }
     
-    AC_GROUP {
-        int id PK
-        string name
+    class AC_GROUP {
+        id
+        name
     }
     
-    REGISTRATION_REQUEST {
-        int id PK
-        int user_id FK
-        string status
+    class REGISTRATION_REQUEST {
+        id
+        user_id
+        status
     }
     
-    
-    USER_ROLE {
-        int user_id FK
-        int role_id FK
-        int building_id FK
+    class USER_ROLE {
+        user_id
+        role_id
+        building_id
     }
     
-    AC_GROUP_MEMBERSHIP {
-        int air_conditioner_id FK
-        int group_id FK
+    class AC_GROUP_MEMBERSHIP {
+        air_conditioner_id
+        group_id
     }
     
-    USER ||--o{ USER_ROLE : has
-    ROLE ||--o{ USER_ROLE : includes
-    USER ||--o{ REGISTRATION_REQUEST : requests
-    BUILDING ||--o{ ROOM : contains
-    BUILDING ||--o{ USER_ROLE : assigns
-    ROOM ||--o{ AIR_CONDITIONER : contains
-    ROOM ||--o{ TEMPERATURE_SENSOR : contains
-    AIR_CONDITIONER ||--o{ SCHEDULE : has
-    AC_GROUP_MEMBERSHIP }o--|| AIR_CONDITIONER : includes
-    AC_GROUP_MEMBERSHIP }o--|| AC_GROUP : includes
+    USER "1" --o "*" USER_ROLE : has
+    ROLE "1" --o "*" USER_ROLE : includes
+    USER "1" --o "*" REGISTRATION_REQUEST : requests
+    BUILDING "1" --o "*" ROOM : contains
+    BUILDING "1" --o "*" USER_ROLE : assigns
+    ROOM "1" --o "*" AIR_CONDITIONER : contains
+    ROOM "1" --o "*" TEMPERATURE_SENSOR : contains
+    AIR_CONDITIONER "1" --o "*" SCHEDULE : has
+    AIR_CONDITIONER "*" --o "*" AC_GROUP_MEMBERSHIP : includes
+    AC_GROUP "*" --o "*" AC_GROUP_MEMBERSHIP : includes
