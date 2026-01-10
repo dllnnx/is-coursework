@@ -89,7 +89,5 @@ CREATE TABLE IF NOT EXISTS ac_group_membership (
 );
 
 CREATE INDEX IF NOT EXISTS idx_user_yandex_id ON "user" (yandex_id);
-CREATE INDEX IF NOT EXISTS idx_room_building_id ON room (building_id);
-CREATE INDEX IF NOT EXISTS idx_air_conditioner_status ON air_conditioner (status);
 CREATE INDEX IF NOT EXISTS idx_schedule_air_conditioner_id ON schedule (air_conditioner_id);
 CREATE INDEX IF NOT EXISTS idx_schedule_day_active ON schedule (day_of_week, is_active);
