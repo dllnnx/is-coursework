@@ -258,18 +258,6 @@ CREATE INDEX IF NOT EXISTS idx_user_yandex_id ON "user" (yandex_id);
 
 Этот индекс ускоряет аутентификацию пользователей через Яндекс ID, так как поиск по этому полю происходит при каждом входе в систему.
 
-=== Индекс на таблицу room по полю building_id
-
-CREATE INDEX IF NOT EXISTS idx_room_building_id ON room (building_id);
-
-Индекс ускоряет запросы на получение всех комнат в здании, что является частой операцией при навигации по системе.
-
-=== Индекс на таблицу air_conditioner по полю status
-
-CREATE INDEX IF NOT EXISTS idx_air_conditioner_status ON air_conditioner (status);
-
-Индекс оптимизирует фильтрацию кондиционеров по статусу (активные/неактивные), что используется при отображении списков устройств.
-
 === Индекс на таблицу schedule по полю air_conditioner_id
 
 CREATE INDEX IF NOT EXISTS idx_schedule_air_conditioner_id ON schedule (air_conditioner_id);
