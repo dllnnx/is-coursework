@@ -1,0 +1,75 @@
+erDiagram
+    USER {
+        _ yandex_id
+        _ name
+        _ email
+    }
+    
+    ROLE {
+        _ name
+    }
+    
+    BUILDING {
+        _ name
+        _ address
+    }
+    
+    ROOM {
+        _ building_id
+        _ name
+    }
+    
+    AIR_CONDITIONER {
+        _ room_id
+        _ name
+        _ model
+        _ status
+        _ mode
+        _ target_temperature
+    }
+    
+    TEMPERATURE_SENSOR {
+        _ room_id
+        _ name
+        _ model
+        _ current_temperature
+    }
+    
+    SCHEDULE {
+        _ air_conditioner_id
+        _ name
+        _ day_of_week
+        _ specific_date
+        _ start_time
+        _ end_time
+        _ mode
+        _ target_temperature
+        _ periodicity
+        _ is_active
+    }
+    
+    AC_GROUP {
+        _ name
+    }
+    
+    REGISTRATION_REQUEST {
+        _ user_id
+        _ status
+    }
+    
+    PERMISSION {
+        _ user_id
+        _ role_id
+        _ building_id
+    }
+    
+    USER ||--o{ PERMISSION : has
+    ROLE ||--o{ PERMISSION : includes
+    USER ||--o{ REGISTRATION_REQUEST : requests
+    BUILDING ||--o{ ROOM : contains
+    BUILDING ||--o{ PERMISSION : assigns
+    ROOM ||--o{ AIR_CONDITIONER : contains
+    ROOM ||--o{ TEMPERATURE_SENSOR : contains
+    AIR_CONDITIONER ||--o{ SCHEDULE : has
+    AC_GROUP_MEMBERSHIP }o--|| AIR_CONDITIONER : includes
+    AC_GROUP_MEMBERSHIP }o--|| AC_GROUP : includes

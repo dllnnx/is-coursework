@@ -1,0 +1,90 @@
+erDiagram
+    USER {
+        int id PK "NOT NULL"
+        string yandex_id "NOT NULL"
+        string name "NOT NULL"
+        string email "NOT NULL"
+    }
+    
+    ROLE {
+        int id PK "NOT NULL"
+        string name "NOT NULL"
+    }
+    
+    BUILDING {
+        int id PK "NOT NULL"
+        string name "NOT NULL"
+        string address 
+    }
+    
+    ROOM {
+        int id PK "NOT NULL"
+        int building_id FK "NOT NULL"
+        string name "NOT NULL"
+    }
+    
+    AIR_CONDITIONER {
+        int id PK "NOT NULL"
+        int room_id FK "NOT NULL"
+        string name "NOT NULL"
+        string model 
+        string status "NOT NULL"
+        string mode 
+        float target_temperature
+    }
+    
+    TEMPERATURE_SENSOR {
+        int id PK "NOT NULL"
+        int room_id FK "NOT NULL"
+        string name "NOT NULL"
+        string model 
+        float current_temperature "NOT NULL"
+    }
+    
+    SCHEDULE {
+        int id PK "NOT NULL"
+        int air_conditioner_id FK "NOT NULL"
+        string name "NOT NULL"
+        string day_of_week
+        date specific_date
+        time start_time "NOT NULL"
+        time end_time "NOT NULL"
+        string mode "NOT NULL"
+        float target_temperature "NOT NULL"
+        string periodicity 
+        boolean is_active "NOT NULL"
+    }
+    
+    AC_GROUP {
+        int id PK "NOT NULL"
+        string name "NOT NULL"
+    }
+    
+    REGISTRATION_REQUEST {
+        int id PK "NOT NULL"
+        int user_id FK "NOT NULL"
+        string status "NOT NULL"
+    }
+    
+    
+    PERMISSION {
+        int user_id FK "NOT NULL"
+        int role_id FK "NOT NULL"
+        int building_id FK "NOT NULL"
+    }
+    
+    AC_GROUP_MEMBERSHIP {
+        int air_conditioner_id FK "NOT NULL"
+        int group_id FK "NOT NULL"
+    }
+    
+    USER ||--o{ PERMISSION : has
+    ROLE ||--o{ PERMISSION : includes
+    USER ||--o{ REGISTRATION_REQUEST : requests
+    BUILDING ||--o{ ROOM : contains
+    BUILDING ||--o{ PERMISSION : assigns
+    ROOM ||--o{ AIR_CONDITIONER : contains
+    ROOM ||--o{ TEMPERATURE_SENSOR : contains
+    AIR_CONDITIONER ||--o{ SCHEDULE : has
+    AC_GROUP_MEMBERSHIP }o--|| AIR_CONDITIONER : includes
+    AC_GROUP_MEMBERSHIP }o--|| AC_GROUP : includes
