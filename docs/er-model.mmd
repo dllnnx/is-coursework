@@ -1,83 +1,75 @@
-classDiagram
-    class USER {
-        id
-        yandex_id
-        name
-        email
+erDiagram
+    USER {
+        _ yandex_id
+        _ name
+        _ email
     }
     
-    class ROLE {
-        id
-        name
+    ROLE {
+        _ name
     }
     
-    class BUILDING {
-        id
-        name
-        address
+    BUILDING {
+        _ name
+        _ address
     }
     
-    class ROOM {
-        id
-        building_id
-        name
+    ROOM {
+        _ building_id
+        _ name
     }
     
-    class AIR_CONDITIONER {
-        id
-        room_id
-        name
-        model
-        status
-        mode
-        target_temperature
+    AIR_CONDITIONER {
+        _ room_id
+        _ name
+        _ model
+        _ status
+        _ mode
+        _ target_temperature
     }
     
-    class TEMPERATURE_SENSOR {
-        id
-        room_id
-        name
-        model
-        current_temperature
+    TEMPERATURE_SENSOR {
+        _ room_id
+        _ name
+        _ model
+        _ current_temperature
     }
     
-    class SCHEDULE {
-        id
-        air_conditioner_id
-        name
-        day_of_week
-        specific_date
-        start_time
-        end_time
-        mode
-        target_temperature
-        periodicity
-        is_active
+    SCHEDULE {
+        _ air_conditioner_id
+        _ name
+        _ day_of_week
+        _ specific_date
+        _ start_time
+        _ end_time
+        _ mode
+        _ target_temperature
+        _ periodicity
+        _ is_active
     }
     
-    class AC_GROUP {
-        id
-        name
+    AC_GROUP {
+        _ name
     }
     
-    class REGISTRATION_REQUEST {
-        id
-        user_id
-        status
+    REGISTRATION_REQUEST {
+        _ user_id
+        _ status
     }
     
-    class PERMISSION {
-        user_id
-        role_id
-        building_id
+    PERMISSION {
+        _ user_id
+        _ role_id
+        _ building_id
     }
     
-    USER "1" --o "*" PERMISSION : has
-    ROLE "1" --o "*" PERMISSION : includes
-    USER "1" --o "*" REGISTRATION_REQUEST : requests
-    BUILDING "1" --o "*" ROOM : contains
-    BUILDING "1" --o "*" PERMISSION : assigns
-    ROOM "1" --o "*" AIR_CONDITIONER : contains
-    ROOM "1" --o "*" TEMPERATURE_SENSOR : contains
-    AIR_CONDITIONER "1" --o "*" SCHEDULE : has
-    AIR_CONDITIONER "*" --o "*" AC_GROUP : includes
+    USER ||--o{ PERMISSION : has
+    ROLE ||--o{ PERMISSION : includes
+    USER ||--o{ REGISTRATION_REQUEST : requests
+    BUILDING ||--o{ ROOM : contains
+    BUILDING ||--o{ PERMISSION : assigns
+    ROOM ||--o{ AIR_CONDITIONER : contains
+    ROOM ||--o{ TEMPERATURE_SENSOR : contains
+    AIR_CONDITIONER ||--o{ SCHEDULE : has
+    AC_GROUP_MEMBERSHIP }o--|| AIR_CONDITIONER : includes
+    AC_GROUP_MEMBERSHIP }o--|| AC_GROUP : includes
