@@ -67,7 +67,7 @@ erDiagram
     }
     
     
-    USER_ROLE {
+    PERMISSION {
         int user_id FK "NOT NULL"
         int role_id FK "NOT NULL"
         int building_id FK "NOT NULL"
@@ -78,11 +78,11 @@ erDiagram
         int group_id FK "NOT NULL"
     }
     
-    USER ||--o{ USER_ROLE : has
-    ROLE ||--o{ USER_ROLE : includes
+    USER ||--o{ PERMISSION : has
+    ROLE ||--o{ PERMISSION : includes
     USER ||--o{ REGISTRATION_REQUEST : requests
     BUILDING ||--o{ ROOM : contains
-    BUILDING ||--o{ USER_ROLE : assigns
+    BUILDING ||--o{ PERMISSION : assigns
     ROOM ||--o{ AIR_CONDITIONER : contains
     ROOM ||--o{ TEMPERATURE_SENSOR : contains
     AIR_CONDITIONER ||--o{ SCHEDULE : has

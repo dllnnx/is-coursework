@@ -66,17 +66,17 @@ classDiagram
         status
     }
     
-    class USER_ROLE {
+    class PERMISSION {
         user_id
         role_id
         building_id
     }
     
-    USER "1" --o "*" USER_ROLE : has
-    ROLE "1" --o "*" USER_ROLE : includes
+    USER "1" --o "*" PERMISSION : has
+    ROLE "1" --o "*" PERMISSION : includes
     USER "1" --o "*" REGISTRATION_REQUEST : requests
     BUILDING "1" --o "*" ROOM : contains
-    BUILDING "1" --o "*" USER_ROLE : assigns
+    BUILDING "1" --o "*" PERMISSION : assigns
     ROOM "1" --o "*" AIR_CONDITIONER : contains
     ROOM "1" --o "*" TEMPERATURE_SENSOR : contains
     AIR_CONDITIONER "1" --o "*" SCHEDULE : has
