@@ -57,7 +57,7 @@ services:
     image: grafana/grafana:11.2.2
     container_name: ac-control-grafana
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
@@ -67,6 +67,18 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
     depends_on:
       - prometheus
+    networks:
+      - ac-control-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ac-control-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
     networks:
       - ac-control-network
 

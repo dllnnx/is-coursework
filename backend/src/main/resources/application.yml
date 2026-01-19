@@ -2,9 +2,6 @@ spring:
   application:
     name: ac-control-backend
 
-  config:
-    import: optional:file:.env[.properties]
-
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ac_control}
     username: ${DB_USERNAME:alena}
@@ -29,10 +26,10 @@ spring:
       client:
         registration:
           yandex:
-            client-id: ${YANDEX_CLIENT_ID:your-client-id}
+            client-id: ${YANDEX_CLIENT_ID:0c998c76f8c5456e8564501a65de828a}
             client-secret: ${YANDEX_CLIENT_SECRET:your-client-secret}
             authorization-grant-type: authorization_code
-            redirect-uri: "https://localhost:80/oauth"
+            redirect-uri: " http://localhost:3000/oauth/callback"
             scope: login:email, login:info
             client-name: Yandex
         provider:

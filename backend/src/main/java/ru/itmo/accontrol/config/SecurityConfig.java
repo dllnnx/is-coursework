@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfigurationSource;
 import ru.itmo.accontrol.security.YandexOAuth2UserService;
 
 @Configuration
@@ -16,6 +17,7 @@ import ru.itmo.accontrol.security.YandexOAuth2UserService;
 public class SecurityConfig {
 
     private final YandexOAuth2UserService yandexOAuth2UserService;
+    private final CorsConfigurationSource corsConfigurationSource;
 
     /**
      * Development profile - all endpoints open, but OAuth2 login available for testing
@@ -24,6 +26,7 @@ public class SecurityConfig {
     @Profile("dev")
     public SecurityFilterChain developmentSecurityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
@@ -44,6 +47,7 @@ public class SecurityConfig {
     @Profile("prod")
     public SecurityFilterChain productionSecurityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
@@ -70,6 +74,7 @@ public class SecurityConfig {
     @Profile("default")
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
