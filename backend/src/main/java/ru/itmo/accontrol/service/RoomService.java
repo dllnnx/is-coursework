@@ -25,13 +25,13 @@ public class RoomService {
 
     @Transactional(readOnly = true)
     public Room findById(Long id) {
-        return roomRepository.findById(id)
+        return roomRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("Room", id));
     }
 
     @Transactional(readOnly = true)
     public List<Room> findByBuildingId(Long buildingId) {
-        return roomRepository.findByBuildingId(buildingId);
+        return roomRepository.findByBuildingId(buildingId.intValue());
     }
 
     @Transactional(readOnly = true)

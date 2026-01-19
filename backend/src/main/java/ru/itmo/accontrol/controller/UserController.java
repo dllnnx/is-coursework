@@ -3,6 +3,7 @@ package ru.itmo.accontrol.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itmo.accontrol.dto.AssignRoleRequest;
+import ru.itmo.accontrol.dto.CreateUserRequest;
 import ru.itmo.accontrol.dto.UserDto;
 import ru.itmo.accontrol.dto.UserRoleDto;
+import ru.itmo.accontrol.dto.YandexUserInfo;
 import ru.itmo.accontrol.entity.RegistrationRequest;
+import ru.itmo.accontrol.entity.User;
 import ru.itmo.accontrol.mapper.UserMapper;
 import ru.itmo.accontrol.service.UserService;
+import ru.itmo.accontrol.service.YandexApiService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +34,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
+    private final YandexApiService yandexApiService;
 
     @GetMapping
     @Operation(summary = "Get all users")
@@ -54,6 +60,34 @@ public class UserController {
                         .buildingName(ur.getBuilding().getName())
                         .build())
                 .collect(Collectors.toList()));
+    }
+
+    @PostMapping("/register")
+    @Operation(summary = "Register a new user with pending status",
+            description = "Creates a new user using Yandex OAuth token. " +
+                    "The user info (id, name, email) is fetched from Yandex API. " +
+                    "A registration request with 'pending' status is created. " +
+                    "The user will need to be approved by an administrator before getting access.")
+    public ResponseEntity<UserDto> registerUser(@RequestBody CreateUserRequest request) {
+        // Fetch user info from Yandex API using the OAuth token
+        YandexUserInfo yandexInfo = yandexApiService.getUserInfo(request.getOauthToken());
+        
+        // Check if user already exists
+        var existingUser = userService.findByYandexId(yandexInfo.getId());
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(userMapper.toDto(existingUser.get()));
+        }
+        
+        // Create new user with data from Yandex
+        User user = User.builder()
+                .yandexId(yandexInfo.getId())
+                .name(yandexInfo.getBestName())
+                .email(yandexInfo.getBestEmail())
+                .build();
+        
+        User createdUser = userService.createWithPendingRequest(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toDto(createdUser));
     }
 
     @GetMapping("/pending")

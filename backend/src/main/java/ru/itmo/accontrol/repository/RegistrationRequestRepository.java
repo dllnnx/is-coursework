@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RegistrationRequestRepository extends JpaRepository<RegistrationRequest, Long> {
+public interface RegistrationRequestRepository extends JpaRepository<RegistrationRequest, Integer> {
     
-    Optional<RegistrationRequest> findByUserId(Long userId);
+    Optional<RegistrationRequest> findByUserId(Integer userId);
     
     List<RegistrationRequest> findByStatus(String status);
 }

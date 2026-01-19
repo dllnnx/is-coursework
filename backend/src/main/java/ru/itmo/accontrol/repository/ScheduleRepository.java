@@ -7,9 +7,9 @@ import ru.itmo.accontrol.entity.Schedule;
 import java.util.List;
 
 @Repository
-public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
+public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     
-    List<Schedule> findByAirConditionerId(Long airConditionerId);
+    List<Schedule> findByAirConditionerId(Integer airConditionerId);
     
     List<Schedule> findByDayOfWeekAndIsActive(String dayOfWeek, Boolean isActive);
     

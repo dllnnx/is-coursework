@@ -37,7 +37,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findById(Long id) {
-        return userRepository.findById(id)
+        return userRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("User", id));
     }
 
@@ -63,7 +63,7 @@ public class UserService {
 
     public User approveRegistration(Long userId) {
         User user = findById(userId);
-        RegistrationRequest request = registrationRequestRepository.findByUserId(userId)
+        RegistrationRequest request = registrationRequestRepository.findByUserId(userId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("RegistrationRequest for user", userId));
         request.setStatus("approved");
         registrationRequestRepository.save(request);
@@ -72,7 +72,7 @@ public class UserService {
 
     public User rejectRegistration(Long userId) {
         User user = findById(userId);
-        RegistrationRequest request = registrationRequestRepository.findByUserId(userId)
+        RegistrationRequest request = registrationRequestRepository.findByUserId(userId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("RegistrationRequest for user", userId));
         request.setStatus("rejected");
         registrationRequestRepository.save(request);
@@ -81,12 +81,12 @@ public class UserService {
 
     public UserRole assignRole(Long userId, Long roleId, Long buildingId) {
         User user = findById(userId);
-        Role role = roleRepository.findById(roleId)
+        Role role = roleRepository.findById(roleId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("Role", roleId));
-        Building building = buildingRepository.findById(buildingId)
+        Building building = buildingRepository.findById(buildingId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("Building", buildingId));
 
-        UserRoleId userRoleId = new UserRoleId(userId, roleId, buildingId);
+        UserRoleId userRoleId = new UserRoleId(userId.intValue(), roleId.intValue(), buildingId.intValue());
         UserRole userRole = UserRole.builder()
                 .id(userRoleId)
                 .user(user)
@@ -98,13 +98,13 @@ public class UserService {
     }
 
     public void removeRole(Long userId, Long roleId, Long buildingId) {
-        UserRoleId userRoleId = new UserRoleId(userId, roleId, buildingId);
+        UserRoleId userRoleId = new UserRoleId(userId.intValue(), roleId.intValue(), buildingId.intValue());
         userRoleRepository.deleteById(userRoleId);
     }
 
     @Transactional(readOnly = true)
     public List<UserRole> getUserRoles(Long userId) {
-        return userRoleRepository.findByUserId(userId);
+        return userRoleRepository.findByUserId(userId.intValue());
     }
 
     public void delete(Long id) {

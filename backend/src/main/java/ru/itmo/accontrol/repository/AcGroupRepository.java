@@ -7,7 +7,7 @@ import ru.itmo.accontrol.entity.AcGroup;
 import java.util.Optional;
 
 @Repository
-public interface AcGroupRepository extends JpaRepository<AcGroup, Long> {
+public interface AcGroupRepository extends JpaRepository<AcGroup, Integer> {
     
     Optional<AcGroup> findByName(String name);
 }

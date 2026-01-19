@@ -31,7 +31,7 @@ public class AcGroupService {
 
     @Transactional(readOnly = true)
     public AcGroup findById(Long id) {
-        return groupRepository.findById(id)
+        return groupRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("AcGroup", id));
     }
 
@@ -47,7 +47,7 @@ public class AcGroupService {
 
     public AcGroup addAirConditioner(Long groupId, Long airConditionerId) {
         AcGroup group = findById(groupId);
-        AirConditioner ac = airConditionerRepository.findById(airConditionerId)
+        AirConditioner ac = airConditionerRepository.findById(airConditionerId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("AirConditioner", airConditionerId));
         ac.getGroups().add(group);
         airConditionerRepository.save(ac);
@@ -56,7 +56,7 @@ public class AcGroupService {
 
     public AcGroup removeAirConditioner(Long groupId, Long airConditionerId) {
         AcGroup group = findById(groupId);
-        AirConditioner ac = airConditionerRepository.findById(airConditionerId)
+        AirConditioner ac = airConditionerRepository.findById(airConditionerId.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("AirConditioner", airConditionerId));
         ac.getGroups().remove(group);
         airConditionerRepository.save(ac);
@@ -72,7 +72,7 @@ public class AcGroupService {
     }
 
     public void turnOnGroup(Long groupId) {
-        List<AirConditioner> acs = airConditionerRepository.findByGroupId(groupId);
+        List<AirConditioner> acs = airConditionerRepository.findByGroupId(groupId.intValue());
         for (AirConditioner ac : acs) {
             ac.setStatus("active");
         }
@@ -80,7 +80,7 @@ public class AcGroupService {
     }
 
     public void turnOffGroup(Long groupId) {
-        List<AirConditioner> acs = airConditionerRepository.findByGroupId(groupId);
+        List<AirConditioner> acs = airConditionerRepository.findByGroupId(groupId.intValue());
         for (AirConditioner ac : acs) {
             ac.setStatus("inactive");
             ac.setMode("off");

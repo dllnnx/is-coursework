@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, UserRoleId> {
     
-    List<UserRole> findByUserId(Long userId);
+    List<UserRole> findByUserId(Integer userId);
     
-    List<UserRole> findByBuildingId(Long buildingId);
+    List<UserRole> findByBuildingId(Integer buildingId);
     
-    List<UserRole> findByUserIdAndBuildingId(Long userId, Long buildingId);
+    List<UserRole> findByUserIdAndBuildingId(Integer userId, Integer buildingId);
 }

@@ -7,9 +7,9 @@ import ru.itmo.accontrol.entity.Room;
 import java.util.List;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room, Long> {
+public interface RoomRepository extends JpaRepository<Room, Integer> {
     
-    List<Room> findByBuildingId(Long buildingId);
+    List<Room> findByBuildingId(Integer buildingId);
     
     List<Room> findByNameContainingIgnoreCase(String name);
 }

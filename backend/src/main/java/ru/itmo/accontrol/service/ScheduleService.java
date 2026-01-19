@@ -25,13 +25,13 @@ public class ScheduleService {
 
     @Transactional(readOnly = true)
     public Schedule findById(Long id) {
-        return scheduleRepository.findById(id)
+        return scheduleRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("Schedule", id));
     }
 
     @Transactional(readOnly = true)
     public List<Schedule> findByAirConditionerId(Long airConditionerId) {
-        return scheduleRepository.findByAirConditionerId(airConditionerId);
+        return scheduleRepository.findByAirConditionerId(airConditionerId.intValue());
     }
 
     @Transactional(readOnly = true)

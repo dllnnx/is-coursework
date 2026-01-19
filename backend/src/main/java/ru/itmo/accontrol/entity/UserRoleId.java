@@ -19,11 +19,11 @@ import java.io.Serializable;
 public class UserRoleId implements Serializable {
 
     @Column(name = "user_id")
-    private Long userId;
+    private Integer userId;
 
     @Column(name = "role_id")
-    private Long roleId;
+    private Integer roleId;
 
     @Column(name = "building_id")
-    private Long buildingId;
+    private Integer buildingId;
 }

@@ -9,10 +9,10 @@ import ru.itmo.accontrol.entity.TemperatureSensor;
 import java.util.List;
 
 @Repository
-public interface TemperatureSensorRepository extends JpaRepository<TemperatureSensor, Long> {
+public interface TemperatureSensorRepository extends JpaRepository<TemperatureSensor, Integer> {
     
-    List<TemperatureSensor> findByRoomId(Long roomId);
+    List<TemperatureSensor> findByRoomId(Integer roomId);
     
     @Query("SELECT ts FROM TemperatureSensor ts WHERE ts.room.building.id = :buildingId")
-    List<TemperatureSensor> findByBuildingId(@Param("buildingId") Long buildingId);
+    List<TemperatureSensor> findByBuildingId(@Param("buildingId") Integer buildingId);
 }

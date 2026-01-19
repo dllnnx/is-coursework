@@ -25,18 +25,18 @@ public class TemperatureSensorService {
 
     @Transactional(readOnly = true)
     public TemperatureSensor findById(Long id) {
-        return sensorRepository.findById(id)
+        return sensorRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("TemperatureSensor", id));
     }
 
     @Transactional(readOnly = true)
     public List<TemperatureSensor> findByRoomId(Long roomId) {
-        return sensorRepository.findByRoomId(roomId);
+        return sensorRepository.findByRoomId(roomId.intValue());
     }
 
     @Transactional(readOnly = true)
     public List<TemperatureSensor> findByBuildingId(Long buildingId) {
-        return sensorRepository.findByBuildingId(buildingId);
+        return sensorRepository.findByBuildingId(buildingId.intValue());
     }
 
     public TemperatureSensor create(Long roomId, TemperatureSensor sensor) {

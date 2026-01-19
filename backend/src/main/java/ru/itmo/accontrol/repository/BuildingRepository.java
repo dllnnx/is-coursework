@@ -9,10 +9,10 @@ import ru.itmo.accontrol.entity.Building;
 import java.util.List;
 
 @Repository
-public interface BuildingRepository extends JpaRepository<Building, Long> {
+public interface BuildingRepository extends JpaRepository<Building, Integer> {
     
     List<Building> findByNameContainingIgnoreCase(String name);
     
     @Query("SELECT DISTINCT b FROM Building b JOIN b.userRoles ur WHERE ur.user.id = :userId")
-    List<Building> findBuildingsByUserId(@Param("userId") Long userId);
+    List<Building> findBuildingsByUserId(@Param("userId") Integer userId);
 }

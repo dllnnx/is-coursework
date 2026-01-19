@@ -23,13 +23,13 @@ public class BuildingService {
 
     @Transactional(readOnly = true)
     public Building findById(Long id) {
-        return buildingRepository.findById(id)
+        return buildingRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("Building", id));
     }
 
     @Transactional(readOnly = true)
     public List<Building> findByUserId(Long userId) {
-        return buildingRepository.findBuildingsByUserId(userId);
+        return buildingRepository.findBuildingsByUserId(userId.intValue());
     }
 
     @Transactional(readOnly = true)

@@ -25,18 +25,18 @@ public class AirConditionerService {
 
     @Transactional(readOnly = true)
     public AirConditioner findById(Long id) {
-        return airConditionerRepository.findById(id)
+        return airConditionerRepository.findById(id.intValue())
                 .orElseThrow(() -> new ResourceNotFoundException("AirConditioner", id));
     }
 
     @Transactional(readOnly = true)
     public List<AirConditioner> findByRoomId(Long roomId) {
-        return airConditionerRepository.findByRoomId(roomId);
+        return airConditionerRepository.findByRoomId(roomId.intValue());
     }
 
     @Transactional(readOnly = true)
     public List<AirConditioner> findByBuildingId(Long buildingId) {
-        return airConditionerRepository.findByBuildingId(buildingId);
+        return airConditionerRepository.findByBuildingId(buildingId.intValue());
     }
 
     @Transactional(readOnly = true)
@@ -51,7 +51,7 @@ public class AirConditionerService {
 
     @Transactional(readOnly = true)
     public List<AirConditioner> findByGroupId(Long groupId) {
-        return airConditionerRepository.findByGroupId(groupId);
+        return airConditionerRepository.findByGroupId(groupId.intValue());
     }
 
     public AirConditioner create(Long roomId, AirConditioner airConditioner) {
