@@ -1,2 +1,4 @@
 2026.01.20 06:43:44 INFO  Started: Metals version 1.6.4 in folders '/Users/azat222/Downloads/is-coursework' for client Cursor 1.105.1.
 2026.01.20 06:43:48 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+янв. 20, 2026 6:46:53 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
