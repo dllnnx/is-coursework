@@ -5,8 +5,6 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { useAuth, TOKEN_STORAGE_KEY } from '../hooks/useAuth';
 
-const YANDEX_CLIENT_ID = '0c998c76f8c5456e8564501a65de828a';
-const YANDEX_SECRET = 'e75b388d25e246af95dede5432772b41';
 const REDIRECT_URI = `${window.location.origin}/oauth/callback`;
 
 export function OAuthCallback() {
@@ -33,50 +31,29 @@ export function OAuthCallback() {
       return;
     }
 
-    exchangeCodeForToken(code);
+    handleAuthCallback(code);
   }, [searchParams]);
 
-  async function exchangeCodeForToken(code: string) {
+  async function handleAuthCallback(code: string) {
     try {
-      const tokenResponse = await fetch('https://oauth.yandex.ru/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          grant_type: 'authorization_code',
-          code: code,
-          client_id: YANDEX_CLIENT_ID,
-          client_secret: YANDEX_SECRET,
-          redirect_uri: REDIRECT_URI,
-        }),
-      });
-
-      if (!tokenResponse.ok) {
-        const errorData = await tokenResponse.json();
-        throw new Error(errorData.error_description || 'Failed to exchange code for token');
-      }
-
-      const tokenData = await tokenResponse.json();
-      const accessToken = tokenData.access_token;
-
-      localStorage.setItem(TOKEN_STORAGE_KEY, accessToken);
-
-      const registerResponse = await fetch('/api/users/register', {
+      const response = await fetch('/api/auth/callback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `OAuth ${accessToken}`,
         },
-        body: JSON.stringify({ oauthToken: accessToken }),
+        body: JSON.stringify({
+          code: code,
+          redirectUri: REDIRECT_URI,
+        }),
       });
 
-      if (!registerResponse.ok) {
-        const errorData = await registerResponse.json().catch(() => ({}));
-        if (registerResponse.status !== 409) {
-          console.warn('Registration response:', errorData);
-        }
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Authentication failed');
       }
+
+      const authData = await response.json();
+      localStorage.setItem(TOKEN_STORAGE_KEY, authData.token);
 
       await refetch();
       setStatus('success');

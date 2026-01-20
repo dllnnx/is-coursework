@@ -42,6 +42,12 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public User findByIdWithRelations(Long id) {
+        return userRepository.findById(id.intValue())
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+    }
+
+    @Transactional(readOnly = true)
     public Optional<User> findByYandexId(String yandexId) {
         return userRepository.findByYandexId(yandexId);
     }

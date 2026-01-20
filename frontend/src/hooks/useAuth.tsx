@@ -37,11 +37,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
 
-  const fetchUserInfo = useCallback(async (accessToken: string) => {
+  const fetchUserInfo = useCallback(async (jwtToken: string) => {
     try {
-      const response = await fetch('https://login.yandex.ru/info?format=json', {
+      const response = await fetch('/api/auth/me', {
         headers: {
-          'Authorization': `OAuth ${accessToken}`,
+          'Authorization': `Bearer ${jwtToken}`,
         },
       });
 
@@ -50,12 +50,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       const data = await response.json();
-      setUser({
-        yandexId: data.id,
-        name: data.real_name || data.display_name || data.login,
-        email: data.default_email,
-      });
-      setIsAuthenticated(true);
+      if (data.authenticated && data.user) {
+        setUser(data.user);
+        setIsAuthenticated(true);
+      } else {
+        throw new Error('Not authenticated');
+      }
     } catch (error) {
       console.error('Failed to fetch user info:', error);
       localStorage.removeItem(TOKEN_STORAGE_KEY);
