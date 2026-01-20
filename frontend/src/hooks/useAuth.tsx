@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from 'react';
 import { OpenAPI } from '../api/core/OpenAPI';
 
-const YANDEX_CLIENT_ID = '0c998c76f8c5456e8564501a65de828a';
+const YANDEX_CLIENT_ID = 'd642d4b85f90411a9256e9b32f3b28dd';
 const TOKEN_STORAGE_KEY = 'ac_control_token';
-const REDIRECT_URI = `${window.location.origin}/oauth/callback`;
+const REDIRECT_URI = `https://se.ifmo.ru/~s408536/oauth/callback`;
 
 interface User {
   id?: number;

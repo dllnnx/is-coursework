@@ -14,7 +14,7 @@ import { OAuthCallback } from './pages/OAuthCallback';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/~s408536">
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />

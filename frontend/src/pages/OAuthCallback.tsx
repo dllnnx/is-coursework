@@ -5,7 +5,7 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { useAuth, TOKEN_STORAGE_KEY } from '../hooks/useAuth';
 
-const REDIRECT_URI = `${window.location.origin}/oauth/callback`;
+const REDIRECT_URI = `https://se.ifmo.ru/~s408536/oauth/callback`;
 
 export function OAuthCallback() {
   const [searchParams] = useSearchParams();
