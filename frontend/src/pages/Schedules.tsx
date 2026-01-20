@@ -21,8 +21,8 @@ export function Schedules() {
     name: '',
     airConditionerId: 0,
     dayOfWeek: 'MONDAY',
-    startTime: { hour: 8, minute: 0, second: 0, nano: 0 },
-    endTime: { hour: 18, minute: 0, second: 0, nano: 0 },
+    startTime: "12:00",
+    endTime: "18:00",
     mode: 'AUTO',
     targetTemperature: 22,
     periodicity: 'DAILY',
@@ -54,8 +54,8 @@ export function Schedules() {
       name: '',
       airConditionerId: acs[0]?.id || 0,
       dayOfWeek: 'MONDAY',
-      startTime: { hour: 8, minute: 0, second: 0, nano: 0 },
-      endTime: { hour: 18, minute: 0, second: 0, nano: 0 },
+      startTime: "12:00",
+      endTime: "18:00",
       mode: 'AUTO',
       targetTemperature: 22,
       periodicity: 'DAILY',
@@ -70,18 +70,8 @@ export function Schedules() {
       name: schedule.name || '',
       airConditionerId: schedule.airConditionerId || 0,
       dayOfWeek: schedule.dayOfWeek || 'MONDAY',
-      startTime: {
-        hour: schedule.startTime?.hour ?? 8,
-        minute: schedule.startTime?.minute ?? 0,
-        second: schedule.startTime?.second ?? 0,
-        nano: schedule.startTime?.nano ?? 0,
-      },
-      endTime: {
-        hour: schedule.endTime?.hour ?? 18,
-        minute: schedule.endTime?.minute ?? 0,
-        second: schedule.endTime?.second ?? 0,
-        nano: schedule.endTime?.nano ?? 0,
-      },
+      startTime: schedule.startTime || "12:00:00",
+      endTime: schedule.endTime || "18:00:00",
       mode: schedule.mode || 'AUTO',
       targetTemperature: schedule.targetTemperature || 22,
       periodicity: schedule.periodicity || 'DAILY',
@@ -130,9 +120,10 @@ export function Schedules() {
     }
   }
 
-  function formatTime(time: { hour?: number; minute?: number } | undefined) {
+  function formatTime(time: string | undefined) {
     if (!time) return '--:--';
-    return `${String(time.hour || 0).padStart(2, '0')}:${String(time.minute || 0).padStart(2, '0')}`;
+    const [hour, minute] = time.split(":").map(Number);
+    return `${hour}:${minute.toString().padStart(2, '0')}`;
   }
 
   if (loading) {
@@ -270,10 +261,9 @@ export function Schedules() {
                 <label className="block text-sm font-medium text-slate-700 mb-1">Start Time</label>
                 <input
                   type="time"
-                  value={`${String(formData.startTime.hour).padStart(2, '0')}:${String(formData.startTime.minute).padStart(2, '0')}`}
+                  value={formData.startTime.substring(0, 5)}
                   onChange={(e) => {
-                    const [hour, minute] = e.target.value.split(':').map(Number);
-                    setFormData({ ...formData, startTime: { ...formData.startTime, hour, minute } });
+                    setFormData({ ...formData, startTime: `${e.target.value}:00` });
                   }}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                 />
@@ -282,10 +272,9 @@ export function Schedules() {
                 <label className="block text-sm font-medium text-slate-700 mb-1">End Time</label>
                 <input
                   type="time"
-                  value={`${String(formData.endTime.hour).padStart(2, '0')}:${String(formData.endTime.minute).padStart(2, '0')}`}
+                  value={formData.endTime.substring(0, 5)}
                   onChange={(e) => {
-                    const [hour, minute] = e.target.value.split(':').map(Number);
-                    setFormData({ ...formData, endTime: { ...formData.endTime, hour, minute } });
+                    setFormData({ ...formData, endTime: `${e.target.value}:00` });
                   }}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                 />

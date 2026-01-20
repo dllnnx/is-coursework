@@ -2428,27 +2428,6 @@
           }
         }
       },
-      "LocalTime": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "minute": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "second": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nano": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "ScheduleDto": {
         "type": "object",
         "properties": {
@@ -2471,13 +2450,18 @@
           },
           "specificDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "2025-01-20"
           },
           "startTime": {
-            "$ref": "#/components/schemas/LocalTime"
+            "type": "string",
+            "format": "time",
+            "example": "09:00:00"
           },
           "endTime": {
-            "$ref": "#/components/schemas/LocalTime"
+            "type": "string",
+            "format": "time",
+            "example": "17:00:00"
           },
           "mode": {
             "type": "string"

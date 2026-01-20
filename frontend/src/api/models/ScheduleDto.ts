@@ -2,7 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { LocalTime } from './LocalTime';
 export type ScheduleDto = {
     id?: number;
     airConditionerId?: number;
@@ -10,8 +9,8 @@ export type ScheduleDto = {
     name?: string;
     dayOfWeek?: string;
     specificDate?: string;
-    startTime?: LocalTime;
-    endTime?: LocalTime;
+    startTime?: string;
+    endTime?: string;
     mode?: string;
     targetTemperature?: number;
     periodicity?: string;

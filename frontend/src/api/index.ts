@@ -13,7 +13,6 @@ export type { AssignRoleRequest } from './models/AssignRoleRequest';
 export type { BuildingDto } from './models/BuildingDto';
 export type { CreateUserRequest } from './models/CreateUserRequest';
 export type { Link } from './models/Link';
-export type { LocalTime } from './models/LocalTime';
 export type { RoomDto } from './models/RoomDto';
 export type { ScheduleDto } from './models/ScheduleDto';
 export type { SetModeRequest } from './models/SetModeRequest';

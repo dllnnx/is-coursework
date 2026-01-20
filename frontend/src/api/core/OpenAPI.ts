@@ -19,26 +19,14 @@ export type OpenAPIConfig = {
     ENCODE_PATH?: ((path: string) => string) | undefined;
 };
 
-const TOKEN_STORAGE_KEY = 'ac_control_token';
-
 export const OpenAPI: OpenAPIConfig = {
-    BASE: '',
+    BASE: 'http://localhost:8080',
     VERSION: '1.0.0',
-    WITH_CREDENTIALS: true,
+    WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',
-    TOKEN: async () => {
-        const token = localStorage.getItem(TOKEN_STORAGE_KEY);
-        return token || '';
-    },
+    TOKEN: undefined,
     USERNAME: undefined,
     PASSWORD: undefined,
-    HEADERS: async (): Promise<Headers> => {
-        const token = localStorage.getItem(TOKEN_STORAGE_KEY);
-        const headers: Record<string, string> = {};
-        if (token) {
-            headers['Authorization'] = `OAuth ${token}`;
-        }
-        return headers;
-    },
+    HEADERS: undefined,
     ENCODE_PATH: undefined,
 };

@@ -14,3 +14,33 @@
 2026.01.19 04:40:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/service/UserService.java. Using fallback presentation compiler.
 2026.01.19 04:40:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/service/UserService.java. Using fallback presentation compiler.
 2026.01.19 04:40:45 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/service/UserService.java. Using fallback presentation compiler.
+2026.01.20 05:04:27 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:27 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:27 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:27 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:29 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:30 WARN  no build target for: /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java
+2026.01.20 05:04:40 WARN  no build target for: /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java
+2026.01.20 05:04:40 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:40 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:40 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:44 INFO  Created report: Optional[file:///Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java]
+2026.01.20 05:04:44 INFO  empty definition using pc, found symbol in pc: java/time/LocalTime# (full report at: "/Users/azat222/Downloads/is-coursework/.metals/.reports/metals-full/2026-01-20/r_empty-definition_05-04-44-818.md")
+2026.01.20 05:04:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:04:48 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+янв. 20, 2026 5:04:48 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 52
+2026.01.20 05:04:48 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:05:11 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:06:39 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:06:40 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:06:43 WARN  no build target for: /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java
+2026.01.20 05:06:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/config/JacksonConfig.java. Using fallback presentation compiler.
+2026.01.20 05:06:44 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/config/JacksonConfig.java. Using fallback presentation compiler.
+2026.01.20 05:14:41 WARN  no build target for: /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/config/JacksonConfig.java
+2026.01.20 05:16:11 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
+2026.01.20 05:16:16 WARN  no build target for: /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java
+2026.01.20 05:16:16 INFO  no build target found for /Users/azat222/Downloads/is-coursework/backend/src/main/java/ru/itmo/accontrol/dto/ScheduleDto.java. Using fallback presentation compiler.
